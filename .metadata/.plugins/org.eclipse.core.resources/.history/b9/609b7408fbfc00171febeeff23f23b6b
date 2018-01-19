@@ -1,0 +1,30 @@
+package top.headtop.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import top.headtop.mapper.TbItemMapper;
+import top.headtop.pojo.EUDataGridResult;
+import top.headtop.pojo.TbItem;
+
+@Service
+public class ItemServiceImpl implements ItemService {
+
+	@Autowired
+	private TbItemMapper tbItemMapper;
+	
+	@Override
+	public TbItem queryItemById(Long itemId) {
+		TbItem tbItem = tbItemMapper.selectByPrimaryKey(itemId);
+		return tbItem;
+	}
+
+	@Override
+	public EUDataGridResult queryItemByPage(Integer page, Integer list) {
+
+
+		
+		return null;
+	}
+
+}

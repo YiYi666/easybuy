@@ -1,0 +1,9 @@
+package top.headtop.service;
+
+import top.headtop.pojo.TbItem;
+
+public interface ItemService {
+
+	TbItem queryItemById(Long itemId);
+
+}

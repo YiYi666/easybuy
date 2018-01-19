@@ -1,0 +1,5 @@
+package top.headtop.service;
+
+public interface ItemService {
+
+}

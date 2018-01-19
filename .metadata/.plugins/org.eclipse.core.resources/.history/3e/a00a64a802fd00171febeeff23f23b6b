@@ -1,0 +1,16 @@
+package top.headtop.service;
+
+import org.springframework.web.multipart.MultipartFile;
+
+import top.headtop.pojo.PicResult;
+
+public class PicServiceImpl implements PicService{
+
+	@Override
+	public PicResult uploadFile(MultipartFile uploadFile) {
+		
+		return null;
+	}
+
+
+}
