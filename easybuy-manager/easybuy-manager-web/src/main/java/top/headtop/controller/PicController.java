@@ -9,7 +9,6 @@ import org.springframework.web.multipart.MultipartFile;
 import top.headtop.pojo.PicResult;
 import top.headtop.service.PicService;
 
-
 @Controller
 public class PicController {
 	
