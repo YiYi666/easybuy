@@ -1,0 +1,31 @@
+package top.headtop.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import top.headtop.mapper.TbItemParamKeyMapper;
+import top.headtop.pojo.EasyBuyResult;
+import top.headtop.pojo.TbItemParamKey;
+import top.headtop.pojo.TbItemParamKeyExample;
+import top.headtop.pojo.TbItemParamKeyExample.Criteria;
+
+public class ItemParamServiceImpl implements ItemParamService{
+
+	@Autowired
+	private TbItemParamKeyMapper itemParamKeyMapper;
+	
+	@Override
+	public EasyBuyResult queryParamByCatId(Long catId) {
+		TbItemParamKeyExample example = new TbItemParamKeyExample();
+		Criteria criteria = example.createCriteria();
+		criteria.andItemCatIdEqualTo(catId);
+		List<TbItemParamKey> list = itemParamKeyMapper.selectByExample(example);
+		if(list.size()>0){
+			TbItemParamKey tbItemParamKey = list.get(0);
+			EasyBuyResult.ok(tbItemParamKey);
+		}
+		return EasyBuyResult.ok();
+	}
+
+}

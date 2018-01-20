@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import top.headtop.pojo.EUDataGridResult;
 import top.headtop.pojo.EUTreeNode;
+import top.headtop.pojo.EasyBuyResult;
 import top.headtop.pojo.TbItem;
 import top.headtop.service.ItemService;
 
@@ -19,6 +20,12 @@ public class ItemController {
 	
 	@Autowired
 	private ItemService itemService;
+	
+	@RequestMapping("/item/save")
+	@ResponseBody
+	public EasyBuyResult saveItem(TbItem item,String desc,String itemParams){
+		return itemService.saveItem(item,desc,itemParams);
+	}
 	
 	@RequestMapping("/item/{itemId}")
 	@ResponseBody

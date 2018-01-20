@@ -1,6 +1,7 @@
 package top.headtop.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,14 +11,20 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
 import top.headtop.mapper.TbItemCatMapper;
+import top.headtop.mapper.TbItemDescMapper;
 import top.headtop.mapper.TbItemMapper;
+import top.headtop.mapper.TbItemParamValueMapper;
 import top.headtop.pojo.EUDataGridResult;
 import top.headtop.pojo.EUTreeNode;
+import top.headtop.pojo.EasyBuyResult;
 import top.headtop.pojo.TbItem;
 import top.headtop.pojo.TbItemCat;
 import top.headtop.pojo.TbItemCatExample;
 import top.headtop.pojo.TbItemCatExample.Criteria;
+import top.headtop.pojo.TbItemDesc;
 import top.headtop.pojo.TbItemExample;
+import top.headtop.pojo.TbItemParamValue;
+import top.headtop.utils.IDUtils;
 
 @Service
 public class ItemServiceImpl implements ItemService {
@@ -26,6 +33,10 @@ public class ItemServiceImpl implements ItemService {
 	private TbItemMapper itemMapper;
 	@Autowired
 	private TbItemCatMapper itemCatMapper;
+	@Autowired
+	private TbItemDescMapper itemDescMapper;
+	@Autowired
+	private TbItemParamValueMapper itemParamValueMapper;
 	
 	@Override
 	public TbItem queryItemById(Long itemId) {
@@ -37,6 +48,7 @@ public class ItemServiceImpl implements ItemService {
 	public EUDataGridResult queryItemList(Integer page, Integer rows) {
 		EUDataGridResult result = new EUDataGridResult();
 		TbItemExample example = new TbItemExample();
+		example.setOrderByClause("created desc");
 		PageHelper.startPage(page, rows);
 		List<TbItem> list = itemMapper.selectByExample(example);
 		PageInfo<TbItem> pageInfo = new PageInfo<>(list);
@@ -62,4 +74,51 @@ public class ItemServiceImpl implements ItemService {
 		}
 		return nodes;
 	}
+
+	@Override
+	public EasyBuyResult saveItem(TbItem item,String desc,String itemParams) {
+		long itemId = IDUtils.genItemId();
+		item.setId(itemId);
+		item.setStatus((byte)1);
+		item.setCreated(new Date());
+		item.setUpdated(new Date());
+		itemMapper.insert(item);
+		
+		EasyBuyResult saveItemDesc = saveItemDesc(itemId,desc);
+		if(saveItemDesc.getStatus()!=200){
+			return EasyBuyResult.build(500, "服务器繁忙！");
+		}
+		
+		EasyBuyResult saveItemParams = saveItemParams(itemId,itemParams);
+		if(saveItemParams.getStatus()!=200){
+			return EasyBuyResult.build(500, "服务器繁忙！");
+		}
+		return EasyBuyResult.ok();
+	}
+
+	private EasyBuyResult saveItemParams(long itemId, String itemParams) {
+		TbItemParamValue itemParamValue = new TbItemParamValue();
+		itemParamValue.setItemId(itemId);
+		itemParamValue.setParamData(itemParams);
+		itemParamValue.setCreated(new Date());
+		itemParamValue.setUpdated(new Date());
+		itemParamValueMapper.insert(itemParamValue);
+		return EasyBuyResult.ok();
+	}
+
+	private EasyBuyResult saveItemDesc(long itemId, String desc) {
+		if(org.apache.commons.lang3.StringUtils.isNotEmpty(desc)){
+			TbItemDesc itemDesc = new TbItemDesc();
+			itemDesc.setItemId(itemId);
+			itemDesc.setItemDesc(desc);
+			itemDesc.setCreated(new Date());
+			itemDesc.setUpdated(new Date());
+			itemDescMapper.insert(itemDesc);
+		}
+		return EasyBuyResult.ok();
+		
+	}
+
+
+
 }
