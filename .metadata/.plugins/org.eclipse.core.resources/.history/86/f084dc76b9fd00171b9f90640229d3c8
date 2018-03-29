@@ -1,5 +1,0 @@
-package top.headtop.service;
-
-public interface ItemParamService {
-
-}

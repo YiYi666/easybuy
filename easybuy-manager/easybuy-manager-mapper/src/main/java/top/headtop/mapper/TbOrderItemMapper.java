@@ -15,6 +15,8 @@ public interface TbOrderItemMapper {
     int insert(TbOrderItem record);
 
     int insertSelective(TbOrderItem record);
+    
+    void insertByBatch(List<TbOrderItem> orderItems);
 
     List<TbOrderItem> selectByExample(TbOrderItemExample example);
 

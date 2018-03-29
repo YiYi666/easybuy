@@ -1,5 +1,6 @@
 package top.headtop.pojo;
 
+import java.io.Serializable;
 import java.util.List;
 
 import com.fasterxml.jackson.databind.JsonNode;
@@ -8,7 +9,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 /**
  * 自定义响应结构
  */
-public class EasyBuyResult {
+public class EasyBuyResult implements Serializable{
 
     // 定义jackson对象
     private static final ObjectMapper MAPPER = new ObjectMapper();

@@ -7,6 +7,15 @@
 		<list key="name">
 		</list>
 		<list key="artifactId">
+			<item value="easybuy-sso"/>
+			<item value="easybuy-parent"/>
+			<item value="esaybuy-sso"/>
+			<item value="esaybuy-parent"/>
+			<item value="easybuy-rest-interfaceImpl"/>
+			<item value="easybuy-rest"/>
+			<item value="easybuy-rest-interface"/>
+			<item value="esaybuy-rest"/>
+			<item value="easybuy-protal"/>
 			<item value="easybuy-manager-pojo"/>
 			<item value="easybuy-manager"/>
 			<item value="easybuy-manager-web"/>
@@ -48,6 +57,8 @@
 	</section>
 	<section name="MavenModuleWizardParentPage">
 		<list key="moduleName">
+			<item value="easybuy-rest-interfaceImpl"/>
+			<item value="easybuy-rest-interface"/>
 			<item value="easybuy-manager-pojo"/>
 			<item value="easybuy-manager-web"/>
 			<item value="easybuy-manager-service"/>
@@ -67,13 +78,10 @@
 	</section>
 	<section name="Maven2ProjectWizardArchifactPage">
 		<list key="package">
-			<item value="org.easybuy.manager.pojo"/>
 		</list>
 		<list key="groupId">
-			<item value="top.headtop"/>
 		</list>
 		<list key="artifactId">
-			<item value="easybuy-manager-pojo"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>

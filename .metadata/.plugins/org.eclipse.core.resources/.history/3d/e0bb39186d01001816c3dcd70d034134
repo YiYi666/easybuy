@@ -1,0 +1,25 @@
+package top.headtop.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.fasterxml.jackson.databind.Module;
+
+import top.headtop.service.ProtalContentService;
+import top.headtop.service.RestContentService;
+
+@Controller
+public class PageController {
+	@Autowired
+	private RestContentService restContentService;
+	
+	@RequestMapping("index")
+	public String showIndex(Model model){
+		String advertise = restContentService.getAdvertise();
+		model.addAttribute("ad1", advertise);
+		return "index";
+	}
+
+}

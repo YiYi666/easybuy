@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd 
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd">
+	<!-- 扫描包加载Service实现类 -->
+
+
+	<context:component-scan base-package="top.headtop.service"></context:component-scan>
+	<context:property-placeholder location="classpath:resource/*.properties" />
+	
+	
+	<!-- freemarkerd的配置 -->
+	<bean id="freemarkerConfig"
+		class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+		<property name="templateLoaderPath" value="/WEB-INF/ftl/" />
+		<property name="defaultEncoding" value="utf-8" />
+	</bean>
+
+
+	<!-- 引用dubbo服务 -->
+	<dubbo:application name="easybuy-protal" />
+	<dubbo:registry protocol="zookeeper" address="106.14.115.246:2181" />
+	<dubbo:reference interface="top.headtop.service.RestContentService"
+		id="restContentServiceImpl" />
+	<dubbo:reference interface="top.headtop.service.RestItemCatService"
+		id="restItemCatServiceImpl" />
+	<dubbo:reference interface="top.headtop.service.SolrService"
+		id="solrServiceImpl" />
+	<dubbo:reference interface="top.headtop.service.RestItemService"
+		id="restItemServiceImpl" />
+ 	<dubbo:reference interface="top.headtop.service.UserService"
+		id="userServiceImpl" /> 
+ 	<dubbo:reference interface="top.headtop.service.OrderService"
+		id="orderServiceImpl" /> 
+		
+</beans>

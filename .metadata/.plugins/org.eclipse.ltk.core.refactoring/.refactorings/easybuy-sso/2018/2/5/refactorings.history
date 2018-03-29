@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;UserService.java&apos; to &apos;easybuy-protal/src/main/java/top.headtop.service&apos;&#x0D;&#x0A;- Original project: &apos;easybuy-sso&apos;&#x0D;&#x0A;- Destination element: &apos;easybuy-protal/src/main/java/top.headtop.service&apos;&#x0D;&#x0A;- Original element: &apos;top.headtop.service.UserService.java&apos;" description="Copy compilation unit" destination="=easybuy-protal/src\/main\/java&lt;top.headtop.service" element1="/src\/main\/java&lt;top.headtop.service{UserService.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1517490488912" units="1" version="1.0"/>
+</session>

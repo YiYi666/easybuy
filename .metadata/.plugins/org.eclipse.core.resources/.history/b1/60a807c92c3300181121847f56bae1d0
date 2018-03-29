@@ -1,0 +1,198 @@
+package top.headtop.domain;
+
+import java.io.Serializable;
+import java.util.Date;
+
+public class Test implements Serializable {
+    private Integer id;
+
+    private String patientNumber;
+
+    private Date inhosDate;
+
+    private String cardId;
+
+    private String customerName;
+
+    private String sex;
+
+    private String sectionoffice;
+
+    private String bedNumber;
+
+    private String faultName;
+
+    private String customerMobilephone;
+
+    private String unitWork;
+
+    private String commonalityName;
+
+    private String medicalModal;
+
+    private String medicalCause;
+
+    private String medicalState;
+
+    private String patientIdentification;
+
+    private String occupation;
+
+    private Date created;
+
+    private Date updated;
+
+    private static final long serialVersionUID = 1L;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getPatientNumber() {
+        return patientNumber;
+    }
+
+    public void setPatientNumber(String patientNumber) {
+        this.patientNumber = patientNumber == null ? null : patientNumber.trim();
+    }
+
+    public Date getInhosDate() {
+        return inhosDate;
+    }
+
+    public void setInhosDate(Date inhosDate) {
+        this.inhosDate = inhosDate;
+    }
+
+    public String getCardId() {
+        return cardId;
+    }
+
+    public void setCardId(String cardId) {
+        this.cardId = cardId == null ? null : cardId.trim();
+    }
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName == null ? null : customerName.trim();
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex == null ? null : sex.trim();
+    }
+
+    public String getSectionoffice() {
+        return sectionoffice;
+    }
+
+    public void setSectionoffice(String sectionoffice) {
+        this.sectionoffice = sectionoffice == null ? null : sectionoffice.trim();
+    }
+
+    public String getBedNumber() {
+        return bedNumber;
+    }
+
+    public void setBedNumber(String bedNumber) {
+        this.bedNumber = bedNumber == null ? null : bedNumber.trim();
+    }
+
+    public String getFaultName() {
+        return faultName;
+    }
+
+    public void setFaultName(String faultName) {
+        this.faultName = faultName == null ? null : faultName.trim();
+    }
+
+    public String getCustomerMobilephone() {
+        return customerMobilephone;
+    }
+
+    public void setCustomerMobilephone(String customerMobilephone) {
+        this.customerMobilephone = customerMobilephone == null ? null : customerMobilephone.trim();
+    }
+
+    public String getUnitWork() {
+        return unitWork;
+    }
+
+    public void setUnitWork(String unitWork) {
+        this.unitWork = unitWork == null ? null : unitWork.trim();
+    }
+
+    public String getCommonalityName() {
+        return commonalityName;
+    }
+
+    public void setCommonalityName(String commonalityName) {
+        this.commonalityName = commonalityName == null ? null : commonalityName.trim();
+    }
+
+    public String getMedicalModal() {
+        return medicalModal;
+    }
+
+    public void setMedicalModal(String medicalModal) {
+        this.medicalModal = medicalModal == null ? null : medicalModal.trim();
+    }
+
+    public String getMedicalCause() {
+        return medicalCause;
+    }
+
+    public void setMedicalCause(String medicalCause) {
+        this.medicalCause = medicalCause == null ? null : medicalCause.trim();
+    }
+
+    public String getMedicalState() {
+        return medicalState;
+    }
+
+    public void setMedicalState(String medicalState) {
+        this.medicalState = medicalState == null ? null : medicalState.trim();
+    }
+
+    public String getPatientIdentification() {
+        return patientIdentification;
+    }
+
+    public void setPatientIdentification(String patientIdentification) {
+        this.patientIdentification = patientIdentification == null ? null : patientIdentification.trim();
+    }
+
+    public String getOccupation() {
+        return occupation;
+    }
+
+    public void setOccupation(String occupation) {
+        this.occupation = occupation == null ? null : occupation.trim();
+    }
+
+    public Date getCreated() {
+        return created;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public Date getUpdated() {
+        return updated;
+    }
+
+    public void setUpdated(Date updated) {
+        this.updated = updated;
+    }
+}

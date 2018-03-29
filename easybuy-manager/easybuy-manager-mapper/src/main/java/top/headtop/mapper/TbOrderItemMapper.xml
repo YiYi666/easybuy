@@ -110,6 +110,31 @@
       #{num,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{price,jdbcType=DOUBLE}, #{totalFee,jdbcType=DOUBLE}, 
       #{picPath,jdbcType=VARCHAR})
   </insert>
+  
+  
+  
+  <!-- 批量插入  -->
+  <insert id="insertByBatch" parameterType="java.util.List" >
+    insert into tb_order_item (id, item_id, order_id, 
+      num, title, price, total_fee, 
+      pic_path)
+    values 
+    <foreach collection="list" item="orderitem" index="index" separator=",">
+      (#{orderitem.id,jdbcType=VARCHAR}, #{orderitem.itemId,jdbcType=VARCHAR}, #{orderitem.orderId,jdbcType=VARCHAR}, 
+      #{orderitem.num,jdbcType=INTEGER}, #{orderitem.title,jdbcType=VARCHAR},
+      #{orderitem.price,jdbcType=DOUBLE}, #{orderitem.totalFee,jdbcType=DOUBLE}, 
+      #{orderitem.picPath,jdbcType=VARCHAR})
+  	</foreach>
+  </insert>
+  
+<!-- 
+   <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.name,jdbcType=VARCHAR}, #{item.logid,jdbcType=INTEGER},#{item.url,jdbcType=LONGVARCHAR})
+   </foreach>
+   -->
+  
+  
+  
   <insert id="insertSelective" parameterType="top.headtop.pojo.TbOrderItem" >
     insert into tb_order_item
     <trim prefix="(" suffix=")" suffixOverrides="," >

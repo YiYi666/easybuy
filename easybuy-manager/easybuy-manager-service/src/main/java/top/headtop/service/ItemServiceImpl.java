@@ -4,7 +4,15 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.jms.JMSException;
+import javax.jms.Message;
+import javax.jms.Session;
+import javax.jms.TextMessage;
+
+import org.apache.activemq.command.ActiveMQTopic;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jms.core.JmsTemplate;
+import org.springframework.jms.core.MessageCreator;
 import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
@@ -37,6 +45,10 @@ public class ItemServiceImpl implements ItemService {
 	private TbItemDescMapper itemDescMapper;
 	@Autowired
 	private TbItemParamValueMapper itemParamValueMapper;
+	@Autowired
+	private JmsTemplate jmsTemplate;
+	@Autowired
+	private ActiveMQTopic topicDestination;
 	
 	@Override
 	public TbItem queryItemById(Long itemId) {
@@ -93,7 +105,25 @@ public class ItemServiceImpl implements ItemService {
 		if(saveItemParams.getStatus()!=200){
 			return EasyBuyResult.build(500, "服务器繁忙！");
 		}
+		//
+		sendMessage(itemId);
+		
 		return EasyBuyResult.ok();
+	}
+	
+	
+
+	private void sendMessage(final long itemId) {
+
+		jmsTemplate.send(topicDestination, new MessageCreator() {
+			
+			@Override
+			public Message createMessage(Session session) throws JMSException {
+				TextMessage textMessage = session.createTextMessage(itemId+"");
+				return textMessage;
+			}
+		});
+		
 	}
 
 	private EasyBuyResult saveItemParams(long itemId, String itemParams) {
